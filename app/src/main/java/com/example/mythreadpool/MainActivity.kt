@@ -8,12 +8,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var number=0
+        var number = 0
         ThreadPoolManager.setMode(ThreadPoolManager.ThreadPoolMode.SINGLETHREADPOOL)
             .setTaskNumber(30).setRunnable(
                 Runnable {
                     Thread.sleep(2000)
-                        Log.d("number", number.toString())
+                    Log.d("number", number.toString())
                     number++
                 }
             ).start()

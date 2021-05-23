@@ -34,29 +34,37 @@ object ThreadPoolManager {
     /**
      * 创建线程池并提交任务
      */
-    fun setFixedThreadPool() {
-        fixedThreadPool = Executors.newFixedThreadPool(corePoolSize)
+    private fun setFixedThreadPool() {
+        if(fixedThreadPool==null){
+            fixedThreadPool = Executors.newFixedThreadPool(corePoolSize)
+        }
         for (i in 0 until taskNumber) {
             fixedThreadPool?.execute(runnable)
         }
     }
 
-    fun setCachedThreadPool() {
-        cachedThreadPool = Executors.newCachedThreadPool()
+    private fun setCachedThreadPool() {
+        if (cachedThreadPool==null){
+            cachedThreadPool = Executors.newCachedThreadPool()
+        }
         for (i in 0 until taskNumber) {
             cachedThreadPool?.execute(runnable)
         }
     }
 
-    fun setSingleThreadPool() {
-        singleThreadPool = Executors.newSingleThreadExecutor()
+    private fun setSingleThreadPool() {
+        if (singleThreadPool==null){
+            singleThreadPool = Executors.newSingleThreadExecutor()
+        }
         for (i in 0 until taskNumber) {
             singleThreadPool?.execute(runnable)
         }
     }
 
-    fun setScheduledThreadPool() {
-        scheduledThreadPool = Executors.newScheduledThreadPool(corePoolSize)
+    private fun setScheduledThreadPool() {
+        if (scheduledThreadPool==null){
+            scheduledThreadPool = Executors.newScheduledThreadPool(corePoolSize)
+        }
         for (i in 0 until taskNumber) {
             scheduledThreadPool?.schedule(runnable, delayTime, timeUnit)
         }
